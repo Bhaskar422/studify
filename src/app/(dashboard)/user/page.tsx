@@ -10,7 +10,7 @@ const page = async () => {
       <h2>Admin page - Welcome back {session?.user.username || session?.user.name}</h2>
     );
   }
-  return <div>Please login to see the admin page</div>;
+  return <div>Please login to see the user page</div>;
 };
 
 export default page;

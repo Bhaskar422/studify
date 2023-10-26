@@ -8,6 +8,7 @@ import React from "react";
 
 const NavBar = async () => {
   const session = await getServerSession();
+  const user = session?.user;
   return (
     <header className="h-14 sticky top-0 z-30 inset-x-0 w-full border-b bg-background/95 backdrop:blur supports-[backdrop-filter]:bg-background/60">
       <MaxWidthWrapper>
@@ -21,7 +22,17 @@ const NavBar = async () => {
           <div className="hidden items-center space-x-4 sm:flex">
             {session?.user ? (
               <>
-                <UserAccountNav />
+                <UserAccountNav
+                  name={
+                    !user?.name || !user?.username
+                      ? "Your Account"
+                      : !user.username
+                      ? user.name
+                      : user.username
+                  }
+                  email={user?.email ?? ""}
+                  imageUrl={user?.image ?? ""}
+                />
               </>
             ) : (
               <>
